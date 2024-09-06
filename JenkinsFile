@@ -4,7 +4,6 @@ pipeline{
         stage("Build"){
             steps{
                 echo "building the code using maven ..."
-                // the line will be changed to 'mvn clean package' 
             }
             post{
                 success{
