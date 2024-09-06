@@ -3,44 +3,48 @@ pipeline{
     stages{
         stage("Build"){
             steps{
-                echo "building ..."
+                echo "building the code using maven ..."
+                // the line will be changed to 'mvn clean package' 
             }
             post{
                 success{
                     mail to: "talishagialanze@gmail.com",
                     subject: "build status email",
-                    body: "build log attached!"
+                    body: "build was successful, and build log was attached!",
+                    attachLog: true
                 }
             }
         }
         stage("Unit and Integration Tests"){
             steps{
-                echo "testing ..."
+                echo "running unit tests with pytest..."
+                
+                echo "running integration tests with pytest..."
             }
         }
         stage("Code Analysis"){
             steps{
-                echo "analysing ..."
+                echo "analysing code using pylint..."
             }
         }
         stage("Security Scan"){
             steps{
-                echo ""
+                echo "performing security scan with bandit"
             }
         }
         stage("Deploy to Staging"){
             steps{
-                echo ""
+                echo "deploying to staging using AWS EC2 instance..."
             }
         }
         stage("Integration Tests on Staging"){
             steps{
-                echo ""
+                echo "running integration tests on staging with pytest "
             }
         }
         stage("Deploy to Production"){
             steps{
-                echo ""
+                echo "deploying to production environment using AWS EC2 instance... "
             }
         }
     }
