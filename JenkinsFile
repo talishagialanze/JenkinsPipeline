@@ -4,12 +4,6 @@ pipeline{
         stage("Build"){
             steps{
                 echo "building the code using maven ..."
-            }
-            post{
-                success{
-                    mail to: "talishagialanze@gmail.com",
-                    subject: "build status email",
-                    body: "build was successful, and build log was attached!"
                 }
             }
         }
@@ -29,7 +23,18 @@ pipeline{
             steps{
                 echo "performing security scan with bandit"
             }
+            post{
+                always{
+                    emailext (
+                        body: 'security scan was successful',
+                        subject: 'security scan outcome',
+                        to: 'talishagialanze@gmail.com",
+                        attachLog: true 
+                        )
+                    }
+                }
         }
+
         stage("Deploy to Staging"){
             steps{
                 echo "deploying to staging using AWS EC2 instance..."
@@ -39,6 +44,16 @@ pipeline{
             steps{
                 echo "running integration tests on staging with pytest "
             }
+            post{
+                always{
+                    emailext (
+                        body: 'security scan was successful',
+                        subject: 'security scan outcome',
+                        to: 'talishagialanze@gmail.com",
+                        attachLog: true 
+                        )
+                    }
+                }
         }
         stage("Deploy to Production"){
             steps{
