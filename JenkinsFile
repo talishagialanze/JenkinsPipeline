@@ -6,7 +6,7 @@ pipeline{
                 echo "building the code using maven ..."
                 }
             }
-        }
+        
         stage('Unit and Integration Tests'){
             steps{
                 echo "running unit tests with pytest..."
