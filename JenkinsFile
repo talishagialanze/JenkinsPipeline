@@ -28,7 +28,7 @@ pipeline{
                     emailext (
                         body: 'security scan was successful',
                         subject: 'security scan outcome',
-                        to: 'talishagialanze@gmail.com",
+                        to: 'talishagialanze@gmail.com',
                         attachLog: true 
                         )
                     }
@@ -47,9 +47,9 @@ pipeline{
             post{
                 always{
                     emailext (
-                        body: 'security scan was successful',
-                        subject: 'security scan outcome',
-                        to: 'talishagialanze@gmail.com",
+                        body: 'integration tests scan was successful',
+                        subject: 'integration tests scan outcome',
+                        to: 'talishagialanze@gmail.com',
                         attachLog: true 
                         )
                     }
